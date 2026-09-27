@@ -7,6 +7,7 @@ import { ui } from '@/data/ui';
 import { shopPage } from '@/data/pages';
 import { Container } from '@/components/ui/Container';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
+import { ExternalIcon } from '@/components/ui/Icons';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -26,6 +27,36 @@ export function Footer() {
             <a href={whatsappUrl()} {...externalLinkProps} className="mt-8 inline-flex min-h-[48px] items-center gap-3 border border-ivory/30 px-5 text-[0.75rem] font-semibold uppercase tracking-[0.18em] transition-colors hover:border-ivory">
               <WhatsAppIcon /> {navLabels.whatsapp}
             </a>
+            <dl className="mt-8 space-y-1 text-[0.9375rem] text-ivory/80">
+              <div className="flex flex-wrap gap-x-2">
+                <dt className="sr-only">WhatsApp</dt>
+                <dd>
+                  <a href={whatsappUrl()} {...externalLinkProps} className="inline-flex min-h-[40px] items-center tabular-nums hover:text-ivory">
+                    {brand.whatsapp.display}
+                  </a>
+                </dd>
+              </div>
+              {emailConfigured && (
+                <div>
+                  <dt className="sr-only">Email</dt>
+                  <dd>
+                    <a href={`mailto:${brand.email}`} className="inline-flex min-h-[40px] items-center break-all hover:text-ivory">
+                      {brand.email}
+                    </a>
+                  </dd>
+                </div>
+              )}
+              <div>
+                <dt className="sr-only">Founder</dt>
+                <dd>
+                  <a href={brand.founder.linkedin} {...externalLinkProps} className="inline-flex min-h-[40px] items-center gap-2 hover:text-ivory">
+                    {ui.footer.founded(brand.founder.name)}
+                    <ExternalIcon />
+                    <span className="sr-only">on LinkedIn (opens in a new tab)</span>
+                  </a>
+                </dd>
+              </div>
+            </dl>
           </div>
           <nav aria-label={navLabels.footerNavLabel} className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:col-span-7">
             <div>
@@ -83,11 +114,6 @@ export function Footer() {
         <div className="flex flex-col gap-3 py-7 text-[0.8125rem] text-ivory/60 sm:flex-row sm:items-center sm:justify-between">
           <p>{ui.footer.rights(year, brand.brandName)}</p>
           <p className="flex flex-wrap gap-x-5 gap-y-1">
-            {emailConfigured && (
-              <a href={`mailto:${brand.email}`} className="hover:text-ivory">
-                {brand.email}
-              </a>
-            )}
             <span>{brand.location}</span>
           </p>
         </div>
