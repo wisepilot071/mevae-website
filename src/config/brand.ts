@@ -11,19 +11,24 @@ export const brand = {
   logoAlt: 'MEVAÉ — premium Indian gift hampers',
   logoWidth: 132,
   logoHeight: 32,
-  email: 'REPLACE_ME@mevae.com', // REPLACE_ME
+  email: 'mevae03@gmail.com',
   whatsapp: {
     countryCode: '91',
-    number: 'REPLACE_ME', // REPLACE_ME: 10-digit number, digits only, e.g. '9876543210'
-    display: '+91 REPLACE_ME', // REPLACE_ME: how the number is printed on the site
+    number: '9368131208', // 10 digits, no spaces or +
+    display: '+91 93681 31208',
   },
   instagram: '', // EMPTY → nothing renders. Paste a full URL (https://instagram.com/…) to show the icon automatically.
   location: 'Delhi NCR',
   deliveryArea: 'Delhi NCR',
   currency: 'INR',
   locale: 'en-IN',
-  siteUrl: 'https://mevae.com', // no trailing slash
+  siteUrl: 'https://mevae.vercel.app', // no trailing slash — change when the custom domain goes live
   foundingYear: 2026,
+  founder: {
+    name: 'Amrit Malik',
+    role: 'Founder',
+    linkedin: 'https://www.linkedin.com/in/amrit-malik-1b2ba22a0',
+  },
 } as const;
 
 export type Brand = typeof brand;
