@@ -4,7 +4,6 @@ const SIG = '/images/products/mevae-signature-dry-fruit-gift-hamper/mevae-signat
 
 export const homepage = {
   hero: {
-    eyebrow: 'Premium gifting · Delhi NCR',
     headline: ['Gifts worth', 'remembering.'],
     subcopy:
       'MEVAÉ composes gift hampers for Diwali, celebrations and the people who matter — dry fruits, candlelight and keepsakes, presented in boxes made to be kept.',

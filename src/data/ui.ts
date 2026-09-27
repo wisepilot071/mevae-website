@@ -47,5 +47,6 @@ export const ui = {
     legalHeading: 'Help',
     instagramLabel: 'Instagram',
     rights: (year: number, name: string) => `© ${year} ${name}`,
+    founded: (name: string) => `Founded by ${name}`,
   },
 };

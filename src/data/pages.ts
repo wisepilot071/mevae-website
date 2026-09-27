@@ -76,6 +76,13 @@ export const aboutPage = {
     { title: 'Meaningful gifting', body: 'Diwali, a milestone, a thank-you to a client or a team — we design for the relationship, not the occasion alone.' },
     { title: 'Contemporary Indian aesthetics', body: 'Rooted in the rituals of Indian gifting — diyas, dry fruits, the ceremony of a wrapped box — expressed with a quieter, modern hand.' },
   ],
+  founder: {
+    eyebrow: 'The founder',
+    heading: 'Founded by Amrit Malik',
+    body: 'MEVAÉ was started by Amrit Malik. For orders, collaborations or corporate gifting, you can reach Amrit directly.',
+    linkedinLabel: 'Connect on LinkedIn',
+    emailLabel: 'Email Amrit',
+  },
   links: {
     shop: { label: 'Shop hampers', href: '/shop' },
     corporate: { label: 'Corporate gifting', href: '/corporate' },
@@ -97,8 +104,13 @@ export const contactPage = {
     body: 'Planning gifts for a team, clients or an event? Share the details and we’ll come back with options.',
     cta: { label: 'Start a corporate order', href: '/corporate' },
   },
-  locationHeading: 'Where we are',
-  locationBody: (location: string) => `Based in ${location}, delivering across ${location}.`,
+  directHeading: 'Reach us directly',
+  whatsappLabel: 'WhatsApp',
+  emailLabel: 'Email',
+  founderLabel: 'Founder',
+  linkedinLabel: 'LinkedIn',
+  locationLabel: 'Based in',
+  locationBody: (location: string) => `${location} — delivering across ${location}.`,
 };
 
 export const corporatePage = {
