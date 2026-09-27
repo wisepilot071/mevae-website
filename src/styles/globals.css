@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ivory: #f5f0e8;
+  --ivory-deep: #e9e0d2;
+  --brown: #29231f;
+  --brown-soft: #5c5048;
+  --gold: #a58a63;
+  --gold-ink: #7a6243;
+  --blush: #e8cfc8;
+  --sindoor: #8c3a2b;
+  --rule: rgba(41, 35, 31, 0.12);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-micro: 180ms;
+  --dur-ui: 320ms;
+  --dur-editorial: 800ms;
+  /* A barely-there paper grain: materiality without decoration. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.13 0 0 0 0 0.1 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    /* Propagates to the viewport: off-canvas drawers can never widen the mobile layout viewport. */
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ivory font-sans text-body text-brown;
+    background-image: var(--grain);
+    background-size: 160px 160px;
+    overflow-x: clip;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif font-medium;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  ::selection { background: var(--blush); color: var(--brown); }
+
+  :focus-visible {
+    outline: 2px solid var(--gold-ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .on-dark :focus-visible { outline-color: var(--gold); }
+
+  [id] { scroll-margin-top: 96px; }
+}
+
+@layer components {
+  .micro-label {
+    @apply font-sans text-micro font-semibold uppercase;
+  }
+  .rule { border-color: var(--rule); }
+
+  /* Signature MEVAÉ frame: a soft jharokha arch — used sparingly on editorial imagery. */
+  .arch { border-radius: 999px 999px 2px 2px / 46% 46% 2px 2px; overflow: hidden; }
+  .arch-sm { border-radius: 999px 999px 2px 2px / 38% 38% 2px 2px; overflow: hidden; }
+
+  /* Sindoor dot — the one festive mark, used for active states and small emphasis. */
+  .dot::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin-right: 0.6em;
+    border-radius: 999px;
+    background: var(--sindoor);
+    vertical-align: 0.2em;
+  }
+
+  .reveal-ready .reveal {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    transition: opacity var(--dur-editorial) var(--ease), transform var(--dur-editorial) var(--ease);
+  }
+  .reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
+
+  .link-rule {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size var(--dur-ui) var(--ease), color var(--dur-micro) var(--ease);
+    padding-bottom: 2px;
+  }
+  .link-rule:hover { background-size: 0% 1px; background-position: 100% 100%; }
+
+  /* Nav links: underline draws in from the left on hover / when active. */
+  .nav-link {
+    background-image: linear-gradient(var(--gold), var(--gold));
+    background-size: 0% 1px;
+    background-position: 0 calc(100% - 10px);
+    background-repeat: no-repeat;
+    transition: background-size var(--dur-ui) var(--ease), color var(--dur-micro) var(--ease);
+  }
+  .nav-link:hover, .nav-link[aria-current='page'] { background-size: 100% 1px; }
+
+  .arrow-link .arrow { display: inline-block; transition: transform var(--dur-ui) var(--ease); }
+  .arrow-link:hover .arrow, .group:hover .arrow { transform: translateX(4px); }
+
+  .scroll-snap-x {
+    /* Contain absolutely-positioned descendants (e.g. sr-only text) so they cannot widen the page. */
+    position: relative;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .scroll-snap-x::-webkit-scrollbar { display: none; }
+
+  /* Horizontal scrollers fade at the edges instead of clipping hard. */
+  .fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 20px, #000 calc(100% - 28px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 20px, #000 calc(100% - 28px), transparent 100%);
+  }
+
+  .grain-dark {
+    background-image: var(--grain);
+    background-size: 160px 160px;
+    background-blend-mode: soft-light;
+  }
+}
+
+@layer utilities {
+  .sr-only-focusable:not(:focus) { @apply sr-only; }
+  .pb-safe { padding-bottom: max(0.75rem, env(safe-area-inset-bottom)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-ready .reveal { opacity: 1; transform: none; }
+}
