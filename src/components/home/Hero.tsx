@@ -12,15 +12,14 @@ import { HeroParallax } from './HeroParallax';
  * with the Signature case layered over its edge. The photograph is the LCP element and loads first.
  */
 export function Hero() {
-  const { eyebrow, headline, subcopy, primaryCta, secondaryCta, image, inset, caption, notes } = homepage.hero;
+  const { headline, subcopy, primaryCta, secondaryCta, image, inset, caption, notes } = homepage.hero;
   const featured = getProduct(caption.href.replace('/product/', ''));
 
   return (
     <section aria-labelledby="hero-heading" className="relative overflow-hidden">
       <div className="mx-auto grid w-full max-w-site gap-8 px-gutter pb-14 pt-4 md:px-gutter-md md:pb-20 md:pt-12 lg:grid-cols-12 lg:items-center lg:gap-8 lg:px-gutter-lg lg:pb-24">
         <div className="order-2 lg:order-1 lg:col-span-6 lg:pr-6">
-          <p className="micro-label dot text-gold-ink">{eyebrow}</p>
-          <h1 id="hero-heading" className="mt-6 text-display">
+          <h1 id="hero-heading" className="text-display">
             <span className="block">{headline[0]}</span>
             <span className="block italic text-gold-ink">{headline[1]}</span>
           </h1>
