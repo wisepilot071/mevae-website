@@ -32,6 +32,7 @@ export const organizationSchema = () => {
       ...(phone ? { telephone: phone } : {}),
     },
     areaServed: { '@type': 'Place', name: brand.deliveryArea },
+    founder: { '@type': 'Person', name: brand.founder.name, jobTitle: brand.founder.role, sameAs: [brand.founder.linkedin] },
   };
 };
 
