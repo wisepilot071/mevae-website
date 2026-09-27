@@ -7,6 +7,9 @@ import { Container } from '@/components/ui/Container';
 import { ButtonLink } from '@/components/ui/Button';
 import { SmartImage } from '@/components/ui/SmartImage';
 import { JsonLd } from '@/components/ui/SEOHead';
+import { ExternalIcon, MailIcon } from '@/components/ui/Icons';
+import { brand, emailConfigured } from '@/config/brand';
+import { externalLinkProps } from '@/lib/whatsapp';
 
 const seo = pageSeo.about;
 
@@ -47,6 +50,34 @@ export default function AboutPage() {
               </li>
             ))}
           </ol>
+        </Container>
+      </section>
+      <section aria-labelledby="founder-heading" className="border-b rule py-section md:py-section-md">
+        <Container className="grid gap-8 md:grid-cols-12 md:items-end md:gap-16">
+          <div className="md:col-span-7">
+            <p className="micro-label dot text-gold-ink">{aboutPage.founder.eyebrow}</p>
+            <h2 id="founder-heading" className="mt-6 text-h1">
+              {aboutPage.founder.heading}
+            </h2>
+            <p className="mt-6 max-w-[46ch] text-lead text-brown-soft">{aboutPage.founder.body}</p>
+          </div>
+          <div className="flex flex-col items-start gap-2 md:col-span-5 md:items-end">
+            <p className="font-serif text-[1.6rem] leading-tight">{brand.founder.name}</p>
+            <p className="micro-label text-brown-soft">
+              {brand.founder.role}, {brand.brandName}
+            </p>
+            <a href={brand.founder.linkedin} {...externalLinkProps} className="mt-3 inline-flex min-h-[44px] items-center gap-2 text-brown">
+              <span className="link-rule">{aboutPage.founder.linkedinLabel}</span>
+              <ExternalIcon />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+            {emailConfigured && (
+              <a href={`mailto:${brand.email}`} className="inline-flex min-h-[44px] items-center gap-2 text-brown">
+                <MailIcon />
+                <span className="link-rule">{brand.email}</span>
+              </a>
+            )}
+          </div>
         </Container>
       </section>
       <section aria-label={aboutPage.links.shop.label} className="py-section md:py-section-md">
